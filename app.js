@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // app.engine('handlebars', engine({ extname: '.hbs', defaultLayout: "main"}));
 app.get('/', (req, res) => {
-  res.send('Esta funcionando Mike firmaza total')
+  res.send('Esta funcionando Mike firmeza total')
 })
 
 // db connection
