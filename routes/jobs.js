@@ -7,6 +7,13 @@ router.get('/test', (req, res) => {
     res.send('deu certo');
 });
 
+
+// form da rota de envio
+router.get('/add', (req, res) => {
+  res.render('add');
+})
+
+
 // add job via post
 router.post('/add', (req, res) => {
 

@@ -17,13 +17,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // handle bars
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', engine({ extname: '.hbs', defaultLayout: "main"}));
+app.engine('handlebars', engine({ extname: '.handlebars', defaultLayout: "main"}));
 app.set('view engine', 'handlebars');
 
+// static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.engine('handlebars', engine({ extname: '.hbs', defaultLayout: "main"}));
 app.get('/', (req, res) => {
-  res.send('Esta funcionando Mike firmeza total')
+  res.render('index')
 })
 
 // db connection
