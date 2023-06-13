@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const Job        = require('./models/Job');
 const app = express();
 const path       = require('path');
+const Sequelize  = require('sequelize');
+const Op         = Sequelize.Op;
 
 const PORT = 3000;
 
