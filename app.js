@@ -3,6 +3,7 @@ const { engine } = require('express-handlebars');
 const db         = require('./db/connection');
 // const exphbs     = require('express-handlebars');
 const bodyParser = require('body-parser');
+const Job        = require('./models/Job');
 const app = express();
 const path       = require('path');
 
@@ -25,7 +26,39 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.engine('handlebars', engine({ extname: '.hbs', defaultLayout: "main"}));
 app.get('/', (req, res) => {
-  res.render('index')
+  let search = req.query.job;
+  let query  = '%'+search+'%'; // PH -> PHP, Word -> Wordpress, press -> Wordpress
+
+  if(!search) {
+    Job.findAll({order: [
+      ['createdAt', 'DESC']
+    ]})
+    .then(jobs => {
+  
+      res.render('index', {
+        jobs
+      });
+  
+    })
+    .catch(err => console.log(err));
+  } else {
+    Job.findAll({
+      where: {title: {[Op.like]: query}},
+      order: [
+        ['createdAt', 'DESC']
+    ]})
+    .then(jobs => {
+      console.log(search);
+      console.log(search);
+  
+      res.render('index', {
+        jobs, search
+      });
+  
+    })
+    .catch(err => console.log(err));
+  }
+
 })
 
 // db connection
