@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express    = require('express');
 const { engine } = require('express-handlebars');
 const db         = require('./db/connection');
@@ -9,7 +12,7 @@ const path       = require('path');
 const Sequelize  = require('sequelize');
 const Op         = Sequelize.Op;
 
-const PORT = 3000;
+const PORT = process.env.PORT;;
 
 app.listen(PORT, function() {
   console.log(`O Express está rodando na porta ${PORT}`);
